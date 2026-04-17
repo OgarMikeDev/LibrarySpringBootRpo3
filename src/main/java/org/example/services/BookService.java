@@ -21,4 +21,8 @@ public class BookService {
         }
         listRegistrationNumbersBooks.add(registrationNumberBook);
     }
+
+    public void deleteBook(Integer registration_number) {
+        listRegistrationNumbersBooks.remove(registration_number);
+    }
 }

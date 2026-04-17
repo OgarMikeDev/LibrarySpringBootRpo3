@@ -3,10 +3,7 @@ package org.example.controllers;
 import org.example.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -30,6 +27,19 @@ public class BookController {
     public ResponseEntity.BodyBuilder saveRegistrationNumberBook(@RequestBody Map<String, Integer> map) {
         try {
             bookService.save(map);
+            return ResponseEntity.status(HttpStatus.OK);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //TODO Задание: добиться удаления книги по её рег-му номеру
+    //TODO http://localhost:8080/deleteBook/111
+    @DeleteMapping("/deleteBook/{registration_number}")
+    public ResponseEntity.BodyBuilder deleteBook(@RequestParam Map<String, Integer> registration_number) {
+        try {
+            System.out.println("Входные данные: " + registration_number);
+            bookService.deleteBook(111);
             return ResponseEntity.status(HttpStatus.OK);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST);
