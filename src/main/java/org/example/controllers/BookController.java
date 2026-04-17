@@ -36,10 +36,9 @@ public class BookController {
     //TODO Задание: добиться удаления книги по её рег-му номеру
     //TODO http://localhost:8080/deleteBook/111
     @DeleteMapping("/deleteBook/{registration_number}")
-    public ResponseEntity.BodyBuilder deleteBook(@RequestParam Map<String, Integer> registration_number) {
+    public ResponseEntity.BodyBuilder deleteBook(@RequestParam Map<String, Integer> mapRegistration_number) {
         try {
-            System.out.println("Входные данные: " + registration_number);
-            bookService.deleteBook(111);
+            bookService.deleteBook(mapRegistration_number);
             return ResponseEntity.status(HttpStatus.OK);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST);
